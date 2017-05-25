@@ -5,4 +5,18 @@
 <struts>
 <constant name="struts.devMode" value="false" />
 <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+<package name="showChips" extends="struts-default">
+<!--    芯片按功能分类展示 -->
+      <action name="classifyChipsAndDivide" 
+            class="chipsmanager.actions.ClassifySelectAction" 
+            method="execute">
+            <result name="success">data.jsp</result>
+      </action>
+<!--       芯片详情页 -->
+      <action name="showChipsDetail" 
+            class="chipsmanager.actions.showChipsDetail" 
+            method="execute">
+            <result name="success">chips_detail.jsp</result>
+      </action>
+   </package>
 </struts>
