@@ -5,8 +5,8 @@ package chipsmanager.javabean;
  * 功能:构建chips实例
  *
  */
-public class chips {
-	public chips(int chipID, String modelID, String chipName, String functions, int pinNumber, String pinDefination,
+public class Chips {
+	public Chips(int chipID, String modelID, String chipName, String functions, int pinNumber, String pinDefination,
 			String pinIntroduction) {
 		super();
 		this.chipID = chipID;

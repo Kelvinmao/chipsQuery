@@ -12,7 +12,7 @@ import org.junit.Test;
 
 import chipsmanager.dbprocess.dbClose;
 import chipsmanager.dbprocess.dbConn;
-import chipsmanager.javabean.chips;;
+import chipsmanager.javabean.Chips;;
 /**
  * @author MaoKaining(毛凯宁)
  * @version 1.0
@@ -157,7 +157,7 @@ public class chipsDataDao  {
 	 * @return
 	 * 功能：根据芯片型号返回芯片对象
 	 */
-	public chips searchChipsByModelId(String model_id){
+	public Chips searchChipsByModelId(String model_id){
 		Connection connection=null;
 		PreparedStatement preparedStatement=null;
 		ResultSet rSet=null;
@@ -168,7 +168,7 @@ public class chipsDataDao  {
 			preparedStatement.setString(1, model_id);
 			rSet=preparedStatement.executeQuery();
 			while(rSet.next()){
-				return new chips(rSet.getInt("CHIP_ID"), 
+				return new Chips(rSet.getInt("CHIP_ID"), 
 						rSet.getString("MODEL_ID"), 
 						rSet.getString("CHIP_NAME"), 
 						rSet.getString("FUNCTIONS"), 
@@ -184,11 +184,45 @@ public class chipsDataDao  {
 		}
 		return null;
 	}
+	
+	/**
+	 * @param model_id
+	 * @return
+	 * 功能：根据芯片型号返回芯片对象
+	 */
+	public Chips searchChipsByChipId(String chip_id){
+		Connection connection=null;
+		PreparedStatement preparedStatement=null;
+		ResultSet rSet=null;
+		String querySQL="SELECT * FROM CHIPS WHERE CHIP_ID =?";
+		try{
+			connection=dbConn.connectToDatabase();
+			preparedStatement=connection.prepareStatement(querySQL);
+			preparedStatement.setString(1, chip_id);
+			rSet=preparedStatement.executeQuery();
+			while(rSet.next()){
+				return new Chips(rSet.getInt("CHIP_ID"), 
+						rSet.getString("MODEL_ID"), 
+						rSet.getString("CHIP_NAME"), 
+						rSet.getString("FUNCTIONS"), 
+						rSet.getInt("PIN_NUMBER"), 
+						rSet.getString("PIN_DEFINATION"), 
+						rSet.getString("CHIP_INTRODUCTION")
+				);
+			}
+		}catch(SQLException ex){
+			ex.printStackTrace();
+		}finally {
+			dbClose.closeQueryConnectionToDatabase(connection, preparedStatement, rSet);
+		}
+		return null;
+	}
+	
 	/**
 	 * @return
 	 * 功能：组合条件查询芯片
 	 */
-	public chips searchChipsByModelId(String model_id,
+	public Chips searchChipsByModelId(String model_id,
 			String chip_name,
 			String functions,
 			int pin_number,
@@ -203,7 +237,7 @@ public class chipsDataDao  {
 			preparedStatement.setString(1, model_id);
 			rSet=preparedStatement.executeQuery();
 			while(rSet.next()){
-				return new chips(rSet.getInt("CHIP_ID"), 
+				return new Chips(rSet.getInt("CHIP_ID"), 
 						rSet.getString("MODEL_ID"), 
 						rSet.getString("CHIP_NAME"), 
 						rSet.getString("FUNCTIONS"), 
@@ -226,11 +260,11 @@ public class chipsDataDao  {
 	 * @return
 	 * 功能：按功能查询芯片，不分页
 	 */
-	public ArrayList<chips> searchChipsAndDivided(String function){
+	public ArrayList<Chips> searchChipsAndDivided(String function){
 		Connection connection=null;
 		PreparedStatement preparedStatement=null;
 		ResultSet resultSet=null;
-		ArrayList<chips> list=new ArrayList<>();
+		ArrayList<Chips> list=new ArrayList<>();
 		String querySQL="SELECT * FROM CHIPS WHERE FUNCTION=?";
 		try{
 			connection=dbConn.connectToDatabase();
@@ -241,7 +275,7 @@ public class chipsDataDao  {
 			}
 			resultSet=preparedStatement.executeQuery();
 			while(resultSet.next()){
-				chips tmp=new chips(resultSet.getInt("CHIP_ID"), 
+				Chips tmp=new Chips(resultSet.getInt("CHIP_ID"), 
 						resultSet.getString("MODEL_ID"), 
 						resultSet.getString("CHIP_NAME"), 
 						resultSet.getString("FUNCTIONS"),
@@ -267,12 +301,12 @@ public class chipsDataDao  {
 	 * @return
 	 * 功能：查找芯片并分页
 	 */
-	public ArrayList<chips> searchChipsAndDivided(int curPage,int pageSize,String function){
+	public ArrayList<Chips> searchChipsAndDivided(int curPage,int pageSize,String function){
 		Connection connection=null;
 		PreparedStatement preparedStatement=null;
 		ResultSet resultSet=null;
 		String querySQL="SELECT * FROM CHIPS WHERE FUNCTION=? LIMIT ?,?";
-		ArrayList<chips> list=new ArrayList<>();
+		ArrayList<Chips> list=new ArrayList<>();
 		try{
 			connection=dbConn.connectToDatabase();
 			if("".equals(function)){
@@ -287,7 +321,7 @@ public class chipsDataDao  {
 			}
 			resultSet=preparedStatement.executeQuery();
 			while(resultSet.next()){
-				chips tmp=new chips(resultSet.getInt("CHIP_ID"), 
+				Chips tmp=new Chips(resultSet.getInt("CHIP_ID"), 
 						resultSet.getString("MODEL_ID"), 
 						resultSet.getString("CHIP_NAME"), 
 						resultSet.getString("FUNCTIONS"),

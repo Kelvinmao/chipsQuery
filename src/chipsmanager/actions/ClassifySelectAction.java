@@ -51,8 +51,8 @@ public class ClassifySelectAction extends ActionSupport{
 	 */
 	public pageBean getSelectPageBean(int pagesize,int page,String function){
 		pageBean pagebean=new pageBean();
-		ArrayList<chips> list=new chipsDataDao().searchChipsAndDivided(function);
-		ArrayList<chips> temp=new chipsDataDao().searchChipsAndDivided(page,pagesize,function);
+		ArrayList<Chips> list=new chipsDataDao().searchChipsAndDivided(function);
+		ArrayList<Chips> temp=new chipsDataDao().searchChipsAndDivided(page,pagesize,function);
 		int allRows=list.size();
 		int totalPage=pagebean.getTotalPages(pagesize,allRows);
 		int currentPage=pagebean.getCurPage(page);

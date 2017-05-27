@@ -1,4 +1,4 @@
-<%@page import="chipsmanager.javabean.chips"%>
+<%@page import="chipsmanager.javabean.Chips"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
@@ -6,7 +6,7 @@
 <html>
 <% String path=request.getContextPath(); String basePath=request.getScheme()+ "://"+request.getServerName()+ ":"+request.getServerPort()+path+ "/"; %>
 <%
- 	chips chip=(chips)request.getAttribute("chips");
+ 	Chips chip=(Chips)request.getAttribute("chips");
  	if(chip==null){
  		response.sendRedirect("data.jsp");
  	}
@@ -520,12 +520,7 @@
       </ol>
     </section>
 
-    <div class="pad margin no-print">
-      <div class="callout callout-info" style="margin-bottom: 0!important;">
-        <h4><i class="fa fa-info"></i> Note:</h4>
-        This page has been enhanced for printing. Click the print button at the bottom of the invoice to test.
-      </div>
-    </div>
+    
 
     <!-- Main content -->
     <section class="invoice">
@@ -591,7 +586,7 @@
       <!-- this row will not appear when printing -->
       <div class="row no-print">
         <div class="col-xs-12">
-          <button type="button" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment
+          <button type="button" onclick="javascript:window.location.href='ExportDetailToPdf.action?chipID=<%=chip.getChipID() %>'" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Export To Excel
           </button>
           <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
             <i class="fa fa-download"></i> Generate PDF

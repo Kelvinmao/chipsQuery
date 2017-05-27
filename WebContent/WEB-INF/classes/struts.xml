@@ -14,9 +14,29 @@
       </action>
 <!--       芯片详情页 -->
       <action name="showChipsDetail" 
-            class="chipsmanager.actions.showChipsDetail" 
+            class="chipsmanager.actions.ShowChipsDetailAction" 
             method="execute">
             <result name="success">chips_detail.jsp</result>
       </action>
-   </package>
+</package>
+
+<package name="dataProcess" extends="struts-default">
+<!-- 	芯片详情页导出芯片数据 -->
+	<action name="ExportDetailToPdf" 
+            class="chipsmanager.tools.ExportOneChipToExcel" 
+            method="execute">
+            <result name="success">export_success.jsp</result>
+    </action>
+</package>
+
+<package name="login" extends="struts-default">
+<!-- 	用户登录 -->
+	<action name="UserLogin" 
+            class="chipsmanager.actions.UserLoginAction" 
+            method="execute">
+            <result name="success">index.jsp</result>
+            <result name="input">login.jsp</result>
+            <result name="error">login.jsp</result>
+    </action>
+</package>
 </struts>

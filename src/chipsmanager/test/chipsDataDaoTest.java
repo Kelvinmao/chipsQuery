@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import chipsmanager.dao.chipsDataDao;
-import chipsmanager.javabean.chips;
+import chipsmanager.javabean.Chips;
 
 public class chipsDataDaoTest {
 

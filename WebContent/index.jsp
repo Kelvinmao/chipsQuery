@@ -1,5 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<%@ page import="chipsmanager.javabean.User" %>
+
+<%
+	Cookie cookie[]=request.getCookies();
+	boolean flag=false;
+	String user_name=(String)session.getAttribute("user_name");
+	for(int i=0;i<cookie.length;++i){
+		if(cookie[i].getName().equals("user_id")||cookie[i].getName().equals("user_pwd")){
+			if(cookie[i].getValue()!=null)
+				flag=true;
+		}
+	}
+	
+	if(!flag)
+		response.sendRedirect("login.jsp");
+%>
 
 <!DOCTYPE html>
 
@@ -263,7 +280,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Alexander Pierce</span>
+              <span class="hidden-xs"><%=user_name %></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -271,8 +288,8 @@
                 <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  Alexander Pierce - Web Developer
-                  <small>Member since Nov. 2012</small>
+                  <%=user_name %> 
+                  
                 </p>
               </li>
               <!-- Menu Body -->
@@ -319,7 +336,7 @@
           <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p><%=user_name %></p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
@@ -426,7 +443,7 @@
           </a>
           <ul class="treeview-menu">
             <li><a href="classifyChipsAndDivide?function=&page=1" ><i class="fa fa-circle-o"></i>按功能查询</a></li>
-            <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i>按ID查询</a></li>
+            <li><a href="classifyChipsAndDivide?function=&page=1"><i class="fa fa-circle-o"></i>按ID查询</a></li>
           </ul>
         </li>
         <li>
@@ -659,8 +676,9 @@
 
                 <p class="message">
                   <a href="#" class="name">
-                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:15</small>
-                    Alexander Pierce
+                    <span>
+                    
+                    </span>
                   </a>
                   I would like to meet you to discuss the latest news about
                   the arrival of the new theme. They say it is going to be one the

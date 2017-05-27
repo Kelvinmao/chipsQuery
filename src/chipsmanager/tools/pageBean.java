@@ -12,7 +12,7 @@ import chipsmanager.javabean.*;
  */
 public class pageBean
 {
-    private ArrayList<chips> list; 				//用ArrayList<chips>存放查询结果
+    private ArrayList<Chips> list; 				//用ArrayList<chips>存放查询结果
     
     private int allRows; 			//总记录数
     
@@ -20,12 +20,12 @@ public class pageBean
     
     private int currentPage; 	//当前页
 
-    public ArrayList<chips> getList()
+    public ArrayList<Chips> getList()
     {
         return list;
     }
 
-    public void setList(ArrayList<chips> list)
+    public void setList(ArrayList<Chips> list)
     {
         this.list = list;
     }
