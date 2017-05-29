@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
 <%@ page import="chipsmanager.javabean.User" %>
 
 <%
@@ -57,7 +56,7 @@
   <![endif]-->
 
   <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+<!--   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> -->
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -313,7 +312,7 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="login.jsp" class="btn btn-default btn-flat" onclick="visitorLogout()">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -407,18 +406,28 @@
         <li class="treeview">
           <a href="#">
             <i class="fa fa-laptop"></i>
-            <span>UI Elements</span>
+            <span>功能分类</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> General</a></li>
-            <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li>
-            <li><a href="pages/UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
-            <li><a href="pages/UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
-            <li><a href="pages/UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
-            <li><a href="pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
+            
+            	<li><a href="classifyChipsAndDivide?function=1"><i class="fa fa-circle-o"></i> 与非门</a></li>
+	            <li><a href="classifyChipsAndDivide?function=2"><i class="fa fa-circle-o"></i> 反相器</a></li>
+	            <li><a href="classifyChipsAndDivide?function=3"><i class="fa fa-circle-o"></i> 驱动器</a></li>
+	            <li><a href="classifyChipsAndDivide?function=4"><i class="fa fa-circle-o"></i>与门</a></li>
+	            <li><a href="classifyChipsAndDivide?function=5"><i class="fa fa-circle-o"></i> 或非门</a></li>
+	            <li><a href="classifyChipsAndDivide?function=6"><i class="fa fa-circle-o"></i> 缓冲器</a></li>
+	            <li><a href="classifyChipsAndDivide?function=7"><i class="fa fa-circle-o"></i> 译码器</a></li>
+	            <li><a href="classifyChipsAndDivide?function=8"><i class="fa fa-circle-o"></i> 数值比较器</a></li>
+	            <li><a href="classifyChipsAndDivide?function=9"><i class="fa fa-circle-o"></i> 异或/异或非门</a></li>
+	            <li><a href="classifyChipsAndDivide?function=10"><i class="fa fa-circle-o"></i> 计数器</a></li>
+	            <li><a href="classifyChipsAndDivide?function=11"><i class="fa fa-circle-o"></i> 寄存器</a></li>
+	            <li><a href="classifyChipsAndDivide?function=12"><i class="fa fa-circle-o"></i> 校验器</a></li>
+	            <li><a href="classifyChipsAndDivide?function=13"><i class="fa fa-circle-o"></i>  函数产生器</a></li>
+	            <li><a href="classifyChipsAndDivide?function=14"><i class="fa fa-circle-o"></i> 全加器</a></li>
+          	
           </ul>
         </li>
         <li class="treeview">
@@ -442,8 +451,10 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="classifyChipsAndDivide?function=&page=1" ><i class="fa fa-circle-o"></i>按功能查询</a></li>
-            <li><a href="classifyChipsAndDivide?function=&page=1"><i class="fa fa-circle-o"></i>按ID查询</a></li>
+            <li><a href="" ><i class="fa fa-circle-o"></i>按型号查询</a></li>
+            <li><a href=""><i class="fa fa-circle-o"></i>按ID查询</a></li>
+            <li><a href="" ><i class="fa fa-circle-o"></i>按管脚数查询</a></li>
+            <li><a href="advancedSearch.jsp" ><i class="fa fa-circle-o"></i>高级查询</a></li>
           </ul>
         </li>
         <li>
@@ -1289,5 +1300,6 @@
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+<script type="text/javascript" src="js/logout.js"></script>
 </body>
 </html>

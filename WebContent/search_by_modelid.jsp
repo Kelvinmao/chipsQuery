@@ -1,14 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
-<%@ page import="chipsmanager.javabean.Chips" %>
-<%@ page import="chipsmanager.tools.pageBean" %>
-<%String user_name=(String)session.getAttribute("user_name"); %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>数字芯片管理系统 | 芯片数据</title>
+  <title>按型号查询</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -17,8 +14,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-  <!-- DataTables -->
-  <link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -36,15 +31,16 @@
 <!--   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> -->
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
+<!-- Site wrapper -->
 <div class="wrapper">
 
   <header class="main-header">
     <!-- Logo -->
     <a href="index.jsp" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><b></b></span>
+      <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>数字芯片管理系统</b></span>
+      <span class="logo-lg"><b>Admin</b>LTE</span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -82,54 +78,6 @@
                     </a>
                   </li>
                   <!-- end message -->
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        AdminLTE Design Team
-                        <small><i class="fa fa-clock-o"></i> 2 hours</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Developers
-                        <small><i class="fa fa-clock-o"></i> Today</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="dist/img/user3-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Sales Department
-                        <small><i class="fa fa-clock-o"></i> Yesterday</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <div class="pull-left">
-                        <img src="dist/img/user4-128x128.jpg" class="img-circle" alt="User Image">
-                      </div>
-                      <h4>
-                        Reviewers
-                        <small><i class="fa fa-clock-o"></i> 2 days</small>
-                      </h4>
-                      <p>Why not buy a new awesome theme?</p>
-                    </a>
-                  </li>
                 </ul>
               </li>
               <li class="footer"><a href="#">See All Messages</a></li>
@@ -149,28 +97,6 @@
                   <li>
                     <a href="#">
                       <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
-                      page and may cause design problems
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-users text-red"></i> 5 new members joined
-                    </a>
-                  </li>
-
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-shopping-cart text-green"></i> 25 sales made
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="fa fa-user text-red"></i> You changed your username
                     </a>
                   </li>
                 </ul>
@@ -196,50 +122,9 @@
                         <small class="pull-right">20%</small>
                       </h3>
                       <div class="progress xs">
-                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar"
+                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
                           <span class="sr-only">20% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Create a nice theme
-                        <small class="pull-right">40%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">40% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Some task I need to do
-                        <small class="pull-right">60%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">60% Complete</span>
-                        </div>
-                      </div>
-                    </a>
-                  </li>
-                  <!-- end task item -->
-                  <li><!-- Task item -->
-                    <a href="#">
-                      <h3>
-                        Make beautiful transitions
-                        <small class="pull-right">80%</small>
-                      </h3>
-                      <div class="progress xs">
-                        <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                          <span class="sr-only">80% Complete</span>
                         </div>
                       </div>
                     </a>
@@ -256,7 +141,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs"><%=user_name %></span>
+              <span class="hidden-xs">Alexander Pierce</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -264,7 +149,7 @@
                 <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  <%=user_name %> - Web Developer
+                  Alexander Pierce - Web Developer
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
@@ -302,7 +187,10 @@
       </div>
     </nav>
   </header>
-  <!-- Left side column. contains the logo and sidebar -->
+
+  <!-- =============================================== -->
+
+  <!-- Left side column. contains the sidebar -->
   <aside class="main-sidebar">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
@@ -312,21 +200,11 @@
           <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p><%=user_name %></p>
+          <p>Alexander Pierce</p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
-      <!-- search form -->
-      <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-              <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-        </div>
-      </form>
-      <!-- /.search form -->
+      
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
@@ -361,7 +239,7 @@
           <a href="widgets.html">
             <i class="fa fa-th"></i> <span>Widgets</span>
             <span class="pull-right-container">
-              <small class="label pull-right bg-green">new</small>
+              <small class="label pull-right bg-green">Hot</small>
             </span>
           </a>
         </li>
@@ -369,9 +247,9 @@
           <a href="#">
             <i class="fa fa-pie-chart"></i>
             <span>Charts</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
           </a>
           <ul class="treeview-menu">
             <li><a href="charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
@@ -383,35 +261,26 @@
         <li class="treeview">
           <a href="#">
             <i class="fa fa-laptop"></i>
-            <span>功能分类</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
+            <span>UI Elements</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="classifyChipsAndDivide?function=1"><i class="fa fa-circle-o"></i> 与非门</a></li>
-            <li><a href="classifyChipsAndDivide?function=2"><i class="fa fa-circle-o"></i> 反相器</a></li>
-            <li><a href="classifyChipsAndDivide?function=3"><i class="fa fa-circle-o"></i> 驱动器</a></li>
-            <li><a href="classifyChipsAndDivide?function=4"><i class="fa fa-circle-o"></i>与门</a></li>
-            <li><a href="classifyChipsAndDivide?function=5"><i class="fa fa-circle-o"></i> 或非门</a></li>
-            <li><a href="classifyChipsAndDivide?function=6"><i class="fa fa-circle-o"></i> 或门</a></li>
-            <li><a href="classifyChipsAndDivide?function=7"><i class="fa fa-circle-o"></i> 缓冲器</a></li>
-            <li><a href="classifyChipsAndDivide?function=8"><i class="fa fa-circle-o"></i> 译码器</a></li>
-            <li><a href="classifyChipsAndDivide?function=9"><i class="fa fa-circle-o"></i> 数值比较器</a></li>
-            <li><a href="classifyChipsAndDivide?function=10"><i class="fa fa-circle-o"></i> 异或/异或非门</a></li>
-            <li><a href="classifyChipsAndDivide?function=11"><i class="fa fa-circle-o"></i> 计数器</a></li>
-            <li><a href="classifyChipsAndDivide?function=12"><i class="fa fa-circle-o"></i> 寄存器</a></li>
-            <li><a href="classifyChipsAndDivide?function=13"><i class="fa fa-circle-o"></i> 校验器</a></li>
-            <li><a href="classifyChipsAndDivide?function=14"><i class="fa fa-circle-o"></i>  函数产生器</a></li>
-            <li><a href="classifyChipsAndDivide?function=15"><i class="fa fa-circle-o"></i> 全加器</a></li>
+            <li><a href="UI/general.html"><i class="fa fa-circle-o"></i> General</a></li>
+            <li><a href="UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li>
+            <li><a href="UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
+            <li><a href="UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
+            <li><a href="UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
+            <li><a href="UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
           </ul>
         </li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-edit"></i> <span>Forms</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
           </a>
           <ul class="treeview-menu">
             <li><a href="forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>
@@ -419,16 +288,16 @@
             <li><a href="forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
           </ul>
         </li>
-        <li class="treeview active">
+        <li class="treeview">
           <a href="#">
-            <i class="fa fa-table"></i> <span>芯片查询</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
+            <i class="fa fa-table"></i> <span>Tables</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="classifyChipsAndDivide?function=&page=1"><i class="fa fa-circle-o"></i> 按功能查询</a></li>
-            <li class="active"><a href="data.html"><i class="fa fa-circle-o"></i> 按ID查询</a></li>
+            <li><a href="tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a></li>
+            <li><a href="tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
           </ul>
         </li>
         <li>
@@ -450,31 +319,31 @@
             </span>
           </a>
         </li>
-        <li class="treeview">
+        <li class="treeview active">
           <a href="#">
             <i class="fa fa-folder"></i> <span>Examples</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="examples/invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>
-            <li><a href="examples/profile.html"><i class="fa fa-circle-o"></i> Profile</a></li>
-            <li><a href="examples/login.html"><i class="fa fa-circle-o"></i> Login</a></li>
-            <li><a href="examples/register.html"><i class="fa fa-circle-o"></i> Register</a></li>
-            <li><a href="examples/lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a></li>
-            <li><a href="examples/404.html"><i class="fa fa-circle-o"></i> 404 Error</a></li>
-            <li><a href="examples/500.html"><i class="fa fa-circle-o"></i> 500 Error</a></li>
-            <li><a href="examples/blank.html"><i class="fa fa-circle-o"></i> Blank Page</a></li>
-            <li><a href="examples/pace.html"><i class="fa fa-circle-o"></i> Pace Page</a></li>
+            <li><a href="invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>
+            <li><a href="profile.html"><i class="fa fa-circle-o"></i> Profile</a></li>
+            <li><a href="login.html"><i class="fa fa-circle-o"></i> Login</a></li>
+            <li><a href="register.html"><i class="fa fa-circle-o"></i> Register</a></li>
+            <li><a href="lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a></li>
+            <li><a href="404.html"><i class="fa fa-circle-o"></i> 404 Error</a></li>
+            <li><a href="500.html"><i class="fa fa-circle-o"></i> 500 Error</a></li>
+            <li class="active"><a href="blank.html"><i class="fa fa-circle-o"></i> Blank Page</a></li>
+            <li><a href="pace.html"><i class="fa fa-circle-o"></i> Pace Page</a></li>
           </ul>
         </li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-share"></i> <span>Multilevel</span>
-                <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
           </a>
           <ul class="treeview-menu">
             <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
@@ -512,133 +381,45 @@
     <!-- /.sidebar -->
   </aside>
 
+  <!-- =============================================== -->
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        芯片数据
+        芯片查询
         <small></small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Tables</a></li>
-        <li class="active">Data tables</li>
+        <li><a href="#">Examples</a></li>
+        <li class="active">Blank page</li>
       </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
-      <div class="row">
-        <div class="col-xs-12">
-          <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">芯片数据</h3>
-              
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <table id="example2" class="table table-bordered table-hover">
-              <thead>
-                <tr>
-                  <th>芯片ID</th>
-                  <th>芯片型号</th>
-                  <th>功能</th>
-                  <th>管脚数</th>
-                  <th>管脚定义</th>
-                </tr>
-                </thead>
-              <s:iterator value="#request.pageBean.list" var="chips" status="it">  
-              
-                <tbody>
-                
-                <tr onclick="location.href='showChipsDetail.action?modelID=<s:property value="#chips.ModelID"/>'">
-                  <td>
-                  	 <s:property value="#chips.chipID"/>
-                  </td>
-                  <td>
-                  	<s:property value="#chips.ModelID"/>
-                  </td>
-                  <td>
-                  <s:property value="#chips.functions"/>
-				</td>
-                  <td> 
-                  	<s:property value="#chips.pinNumber"/>
-                  </td>
-                  <td>
-                  	<s:property value="#chips.pinDefination"/>
-                  </td>
-                
-                </tr>
-                </tbody>
-                
-                </s:iterator>
-                <tfoot>
-                <tr>
-                  <th>芯片ID</th>
-                  <th>芯片型号</th>
-                  <th>功能</th>
-                  <th>管脚数</th>
-                  <th>管脚定义</th>
-                </tr>
-                </tfoot>
-              </table>
-            </div>
-            
-            <!-- /.box-body -->
-            <div class="col-xs-12 list-box-pagination">
-        <ul id="project-pagination" class="pagination">
-          <li><s:if test="#request.pageBean.currentPage == 0">
-              <a href="projectSreach.action?page=<s:property value="#request.pageBean.currentPage - 1"/>" aria-label="Previous">
-                  <span aria-hidden="true">&laquo;</span>
-              </a>
-              </s:if>
-          </li>
-          <%
-              pageBean page1=(pageBean)request.getAttribute("pageBean");
-          	  if(page1==null){
-          		  out.println("参数非法");
-          		  return;
-          	  }
-              int totalpage=page1.getTotalPage();
-              int currentPage=page1.getCurrentPage();
-              for (int i=1;i<=totalpage;i++)
-                  {
-                      if (currentPage==i)
-                      {
-                          out.println("<li class=\"active\"><a href=\"classifyChipsAndDivide.action?function=&page="+i+"\" >"+i+"</a></li>");
-                      }
-                      else
-                      {
-                          out.println("<li><a href=\"classifyChipsAndDivide.action?function=&page="+i+"\" >"+i+"</a></li>");
-                      }
-                  }
-          %>
-          <li> <s:if test="#request.pageBean.currentPage == #request.pageBean.totalpage-1">
-               <a href="classifyChipsAndDivide.action?page=<s:property value="#request.pageBean.currentPage + 1"/>" aria-label="Next"></a>
 
-               <span aria-hidden="true">&raquo;</span>
-               </s:if>
-          </li>
-        </ul>
-      </div>
+     <!-- search form -->
+      <form action="SearchChipsByModelID" method="post" class="sidebar-form">
+        <div class="input-group">
+          <input type="text" name="modelID" class="form-control" placeholder="请输入芯片型号">
+          <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+        </div>
+        <s:fielderror key="IDerr"></s:fielderror>
+      </form>
+      
+      <!-- /.search form -->
 
-            
-          </div>
-          <!-- /.box -->
-          
-          
-      </div>
-    </div>
+    </section>
+    <!-- /.content -->
   </div>
-			
-			
-		
-         
-         
-         
-         
   <!-- /.content-wrapper -->
+
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
       <b>Version</b> 2.4.0
@@ -652,6 +433,7 @@
     <!-- Create the tabs -->
     <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
       <li><a href="#control-sidebar-home-tab" data-toggle="tab"><i class="fa fa-home"></i></a></li>
+
       <li><a href="#control-sidebar-settings-tab" data-toggle="tab"><i class="fa fa-gears"></i></a></li>
     </ul>
     <!-- Tab panes -->
@@ -847,9 +629,6 @@
 <script src="plugins/jQuery/jquery-3.1.1.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="bootstrap/js/bootstrap.min.js"></script>
-<!-- DataTables -->
-<script src="plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
 <!-- SlimScroll -->
 <script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
@@ -858,6 +637,10 @@
 <script src="dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
-
+<script>
+  $(document).ready(function () {
+    $('.sidebar-menu').tree()
+  })
+</script>
 </body>
 </html>

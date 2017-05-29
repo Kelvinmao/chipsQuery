@@ -23,7 +23,7 @@ import chipsmanager.tools.pageBean;
 public class ClassifySelectAction extends ActionSupport{
 	private static final long serialVersionUID = 1L;
 	private String function;
-	private int page;
+	private int page=1;
 	
 	public String getFunction() {
 		return function;

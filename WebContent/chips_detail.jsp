@@ -6,7 +6,14 @@
 <html>
 <% String path=request.getContextPath(); String basePath=request.getScheme()+ "://"+request.getServerName()+ ":"+request.getServerPort()+path+ "/"; %>
 <%
- 	Chips chip=(Chips)request.getAttribute("chips");
+	String user_name=null;
+	Chips chip=null;
+	try{
+		user_name=(String)session.getAttribute("user_name"); 
+		chip=(Chips)request.getAttribute("chips");
+	}catch(Exception ex){
+		ex.printStackTrace();
+	}
  	if(chip==null){
  		response.sendRedirect("data.jsp");
  	}
@@ -37,7 +44,7 @@
   <![endif]-->
 
   <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+<!--   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> -->
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
@@ -259,7 +266,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs">Alexander Pierce</span>
+              <span class="hidden-xs"><%=user_name %></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -267,7 +274,7 @@
                 <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  Alexander Pierce - Web Developer
+                  <%=user_name %> - Web Developer
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
@@ -315,7 +322,7 @@
           <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
+          <p><%=user_name %></p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>

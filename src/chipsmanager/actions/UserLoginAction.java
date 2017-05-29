@@ -61,6 +61,8 @@ public class UserLoginAction extends ActionSupport{
 			
 			Cookie userID=new Cookie("user_id", URLEncoder.encode(id, "utf-8"));
 			Cookie userPwd=new Cookie("user_pwd",Md5Encode.getMd5Code(password));
+			userID.setMaxAge(100*60);
+			userPwd.setMaxAge(100*60);
 			response.addCookie(userID);
 			response.addCookie(userPwd);
 			response.sendRedirect("index.jsp");
