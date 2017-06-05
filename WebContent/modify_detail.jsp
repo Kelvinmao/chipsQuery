@@ -1,6 +1,6 @@
-<%@page import="chipsmanager.javabean.Chips"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+<%@page import="chipsmanager.javabean.Chips"%>
 <%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -340,34 +340,85 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-         <li class="treeview">
+        <li class="treeview">
           <a href="#">
-            <i class="fa fa-laptop"></i>
-            <span>功能分类</span>
+            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            
-            	<li><a href="classifyChipsAndDivide?function=1"><i class="fa fa-circle-o"></i> 与非门</a></li>
-	            <li><a href="classifyChipsAndDivide?function=2"><i class="fa fa-circle-o"></i> 反相器</a></li>
-	            <li><a href="classifyChipsAndDivide?function=3"><i class="fa fa-circle-o"></i> 驱动器</a></li>
-	            <li><a href="classifyChipsAndDivide?function=4"><i class="fa fa-circle-o"></i>与门</a></li>
-	            <li><a href="classifyChipsAndDivide?function=5"><i class="fa fa-circle-o"></i> 或非门</a></li>
-	            <li><a href="classifyChipsAndDivide?function=6"><i class="fa fa-circle-o"></i> 缓冲器</a></li>
-	            <li><a href="classifyChipsAndDivide?function=7"><i class="fa fa-circle-o"></i> 译码器</a></li>
-	            <li><a href="classifyChipsAndDivide?function=8"><i class="fa fa-circle-o"></i> 数值比较器</a></li>
-	            <li><a href="classifyChipsAndDivide?function=9"><i class="fa fa-circle-o"></i> 异或/异或非门</a></li>
-	            <li><a href="classifyChipsAndDivide?function=10"><i class="fa fa-circle-o"></i> 计数器</a></li>
-	            <li><a href="classifyChipsAndDivide?function=11"><i class="fa fa-circle-o"></i> 寄存器</a></li>
-	            <li><a href="classifyChipsAndDivide?function=12"><i class="fa fa-circle-o"></i> 校验器</a></li>
-	            <li><a href="classifyChipsAndDivide?function=13"><i class="fa fa-circle-o"></i>  函数产生器</a></li>
-	            <li><a href="classifyChipsAndDivide?function=14"><i class="fa fa-circle-o"></i> 全加器</a></li>
-          	
+            <li><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
+            <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
           </ul>
         </li>
-        
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-files-o"></i>
+            <span>Layout Options</span>
+            <span class="pull-right-container">
+              <span class="label label-primary pull-right">4</span>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="layout/top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
+            <li><a href="layout/boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
+            <li><a href="layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
+            <li><a href="layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="widgets.html">
+            <i class="fa fa-th"></i> <span>Widgets</span>
+            <span class="pull-right-container">
+              <small class="label pull-right bg-green">new</small>
+            </span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-pie-chart"></i>
+            <span>Charts</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
+            <li><a href="charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
+            <li><a href="charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
+            <li><a href="charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-laptop"></i>
+            <span>UI Elements</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="UI/general.html"><i class="fa fa-circle-o"></i> General</a></li>
+            <li><a href="UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li>
+            <li><a href="UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
+            <li><a href="UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
+            <li><a href="UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-edit"></i> <span>Forms</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>
+            <li><a href="forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
+            <li><a href="forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
+          </ul>
+        </li>
         <li class="treeview">
           <a href="#">
             <i class="fa fa-table"></i> <span>芯片查询</span>
@@ -376,14 +427,86 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="search_by_modelid.jsp" ><i class="fa fa-circle-o"></i>按型号查询</a></li>
-            <li><a href="search_by_id.jsp"><i class="fa fa-circle-o"></i>按ID查询</a></li>
-          
-            <li><a href="advancedSearch.jsp" ><i class="fa fa-circle-o"></i>高级查询</a></li>
+            <li><a href="tables/simple.html"><i class="fa fa-circle-o"></i>按功能查询</a></li>
+            <li><a href="tables/data.html"><i class="fa fa-circle-o"></i>按ID查询</a></li>
+          </ul>
+        </li>
+        <li>
+          <a href="calendar.html">
+            <i class="fa fa-calendar"></i> <span>Calendar</span>
+            <span class="pull-right-container">
+              <small class="label pull-right bg-red">3</small>
+              <small class="label pull-right bg-blue">17</small>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="mailbox/mailbox.html">
+            <i class="fa fa-envelope"></i> <span>Mailbox</span>
+            <span class="pull-right-container">
+              <small class="label pull-right bg-yellow">12</small>
+              <small class="label pull-right bg-green">16</small>
+              <small class="label pull-right bg-red">5</small>
+            </span>
+          </a>
+        </li>
+        <li class="treeview active">
+          <a href="#">
+            <i class="fa fa-folder"></i> <span>Examples</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li class="active"><a href="invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>
+            <li><a href="profile.html"><i class="fa fa-circle-o"></i> Profile</a></li>
+            <li><a href="login.html"><i class="fa fa-circle-o"></i> Login</a></li>
+            <li><a href="register.html"><i class="fa fa-circle-o"></i> Register</a></li>
+            <li><a href="lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a></li>
+            <li><a href="404.html"><i class="fa fa-circle-o"></i> 404 Error</a></li>
+            <li><a href="500.html"><i class="fa fa-circle-o"></i> 500 Error</a></li>
+            <li><a href="blank.html"><i class="fa fa-circle-o"></i> Blank Page</a></li>
+            <li><a href="pace.html"><i class="fa fa-circle-o"></i> Pace Page</a></li>
+          </ul>
+        </li>
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-share"></i> <span>Multilevel</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
+            <li class="treeview">
+              <a href="#"><i class="fa fa-circle-o"></i> Level One
+                <span class="pull-right-container">
+                  <i class="fa fa-angle-left pull-right"></i>
+                </span>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
+                <li class="treeview">
+                  <a href="#"><i class="fa fa-circle-o"></i> Level Two
+                    <span class="pull-right-container">
+                      <i class="fa fa-angle-left pull-right"></i>
+                    </span>
+                  </a>
+                  <ul class="treeview-menu">
+                    <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
+                    <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
           </ul>
         </li>
         <li><a href="documentation/index.html"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
-        
+        <li class="header">LABELS</li>
+        <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
+        <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
+        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->
@@ -470,11 +593,15 @@
       <!-- this row will not appear when printing -->
       <div class="row no-print">
         <div class="col-xs-12">
-          <button type="button" onclick="javascript:window.location.href='ExportDetailToPdf.action?chipID=<%=chip.getChipID() %>'" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Export To Excel
+          <button type="button" onclick="javascript:window.location.href='deleteChip.action?chipID=<%=chip.getChipID() %>'" class="btn btn-success pull-right"><i class="fa fa-credit-card"></i>删除芯片
           </button>
-          <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
-            <i class="fa fa-download"></i> Generate PDF
+          
+          
+          <div class="modify-box" data-toggle="modal" data-target="#modify-modal">
+          <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;" data-toggle="modal" data-target="#myModal">
+            <i class="fa fa-download" ></i> 修改芯片
           </button>
+        </div>
         </div>
       </div>
     </section>
@@ -489,7 +616,78 @@
     <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
     reserved.
   </footer>
-
+  
+  
+  <!-- Modal -->
+<div class="modal fade" id="modify-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-header" id="myModalLabel">修改芯片</h4>
+      </div>
+      <div class="modal-body">
+        <form method="post">
+        	 <div class="chip-id" style="opacity: 0">
+                  <input type="text" class="form-control" value="<s:property value="#request.chips.ChipID"/>" name="ChipID" readonly="readonly"  id="ChipID"/>                                       
+             </div>
+             <div id="model-id" class="form-group">
+                <label class="col-sm-2 control-label">型号</label>
+                <div class="col-sm-10">
+                  <input class="textin form-control" type="text" value="<s:property value="#request.chips.ModelID"/>"   name="ModelID">
+                  <span id="sno-attention" class="help-block"></span>
+                </div>
+              </div>
+              <div id="chip-name" class="form-group">
+                <label class="col-sm-2 control-label">芯片名</label>
+                <div class="col-sm-10">
+                  <input class="textin form-control" type="text" value="<s:property value="#request.chips.ChipName"/>"  name="ChipName">
+                  <span id="psw-attention" class="help-block"></span>
+                </div>
+              </div>
+              <div id="chip-functions" class="form-group">
+                <label class="col-sm-2 control-label">功能</label>
+                <div class="col-sm-10">
+                  <input class="textin form-control" type="text" value="<s:property value="#request.chips.functions"/>"   name="Password">
+                  <span id="psw-attention" class="help-block"></span>
+                </div>
+              </div>
+              <div id="chip-pins" class="form-group">
+                <label class="col-sm-2 control-label">管脚数</label>
+                <div class="col-sm-10">
+                  <input class="textin form-control" type="text" value="<s:property value="#request.chips.pinNumber"/>"  name="PinNumber">
+                  <span id="psw-attention" class="help-block"></span>
+                </div>
+              </div>
+              <div id="pins-def" class="form-group">
+                <label class="col-sm-2 control-label">管脚定义</label>
+                <div class="col-sm-10">
+                  <input class="textin form-control" type="text" value="<s:property value="#request.chips.pinDefination"/>"   name="PinDef">
+                  <span id="psw-attention" class="help-block"></span>
+                </div>
+              </div>
+              <div id="chip-intro" class="form-group">
+                <label class="col-sm-2 control-label">芯片介绍</label>
+                <div class="col-sm-10">
+                  <input class="textin form-control" type="text" value="<s:property value="#request.chips.pinIntroduction"/>"   name="ChipIntro">
+                  <span id="psw-attention" class="help-block"></span>
+                </div>
+              </div>
+               <div class="col-sm-12 alert alert-danger" role="alert" id="modify-attention">
+                   
+             </div>
+              <div class="modal-footer">
+        		<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        		<button type="button" class="btn btn-primary" id="submit-button">提交更改</button>
+      		</div>
+      		
+        </form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
     <!-- Create the tabs -->
@@ -696,5 +894,7 @@
 <script src="dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+
+<script src="js/modifyChips.js"></script>
 </body>
 </html>

@@ -19,6 +19,11 @@
             <result name="success">chips_detail.jsp</result>
       </action>
       
+<!--       通过ajax向前端发送芯片详情数据 -->
+      <action name="showDetailByAjax" class="chipsmanager.actions.ShowChipsDetailByAjaxAction" method="execute">
+      		<result name="success">index.jsp</result>
+      </action>
+      
 <!--       根据ID查询芯片并显示详情 -->
       <action name="SearchChipsByID" 
             class="chipsmanager.actions.SearchChipsByIDAction" 
@@ -26,6 +31,7 @@
             <result name="success">chips_detail.jsp</result>
             <result name="error">search_by_id.jsp</result>
       </action>
+     
       
 <!--       高级搜索功能 -->
       <action name="AdvanceSearch" 
@@ -35,6 +41,7 @@
             <result name="error"></result>
       </action>
       
+<!--       根据型号查找芯片 -->
       <action name="SearchChipsByModelID" 
             class="chipsmanager.actions.SearchByModelIDAction" 
             method="execute">
@@ -70,5 +77,56 @@
             <result name="input">admin_login.jsp</result>
             <result name="error">admin_login.jsp</result>
     </action>
+</package>
+
+<!-- 管理员相关操作 -->
+<package name="admin" extends="struts-default">
+<!-- 	管理员添加芯片 -->
+	<action name="adminAddChips" class="chipsmanager.actions.AdminAddChipsAction" method="execute">
+			<result name="success">add_chips.jsp</result>
+	</action>
+	
+<!-- 	管理员删除芯片前的查询 -->
+	<action name="adminDeleteChips" class="chipsmanager.actions.AdminDeleteChipsAction" method="execute">
+		<result name="success">delete_data.jsp</result>
+	</action>
+	
+<!-- 	管理员修改芯片时，先将详情展示供用户确认 -->
+	<action name="modifyChip" class="chipsmanager.actions.ModifyChipsInfo" method="execute">
+		<result name="success">modify_detail.jsp</result>
+	</action>
+	
+<!-- 	管理员删除芯片 -->
+	<action name="deleteChip" class="chipsmanager.actions.AdminDeleteChipAction" method="execute">
+		<result name="success">index.jsp</result>
+		<result name="input">modify_detail.jsp</result>
+	</action>
+	
+<!-- 	管理员修改芯片信息 -->
+	<action name="submitModify" class="chipsmanager.actions.AdminModifyChipsAction" method="execute">
+		<result name="success">index.jsp</result>
+	</action>
+	
+<!-- 	管理员界面获取信息 -->
+	<action name="getInfo" class="chipsmanager.actions.AdminGetInfo" method="execute">
+		<result name="success">admin.jsp</result>
+	</action>
+	
+	<!-- 	从缓存中读取最常使用的芯片 -->
+	<action name="getFreqUsedChips" class="chipsmanager.actions.GetCacheAction" method="execute">
+		<result name="success">admin.jsp</result>
+	</action>
+	
+</package>
+
+<!-- 从缓存中获取芯片信息 -->
+<package name="cache" extends="json-default">
+	<action name="getInfoFromCache" class="chipsmanager.actions.GetCacheAction" method="execute">
+		<result name="success">index.jsp</result>
+		<result name="error">index.jsp</result>
+		<result name="input">index.jsp</result>	
+	</action>
+	
+
 </package>
 </struts>

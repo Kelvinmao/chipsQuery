@@ -1,12 +1,26 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<%@ taglib prefix="s" uri="/struts-tags"%>
-<%String user_name=(String)session.getAttribute("user_name"); %>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<%@ page import="chipsmanager.javabean.Chips" %>
+<%@ page import="chipsmanager.tools.pageBean" %>
+<%@page import="chipsmanager.javabean.Admin"%>
+    <%
+	Admin admin=null;
+	String adminID=null;
+	try{
+		admin=(Admin)session.getAttribute("admin");	
+		adminID=admin.getAdminID();
+	}catch(Exception ex){
+		response.sendRedirect("admin_login.jsp");
+	}	
+	
+	
+%>
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>按ID查询</title>
+  <title>数字芯片管理系统| 添加芯片</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -29,7 +43,7 @@
   <![endif]-->
 
   <!-- Google Font -->
-<!--   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <!-- Site wrapper -->
@@ -37,11 +51,11 @@
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="index.jsp" class="logo">
+    <a href="admin.jsp" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
+      <span class="logo-lg"><b>数字芯片管理系统</b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -142,7 +156,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-              <span class="hidden-xs"><%= user_name%></span>
+              <span class="hidden-xs"><%= adminID %></span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -150,7 +164,7 @@
                 <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                  <%= user_name%> - Web Developer
+                  <%= adminID %> 
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
@@ -201,63 +215,40 @@
           <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p><%= user_name%></p>
+          <p><%= adminID %></p>
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
       </div>
-      
+      <!-- search form -->
+      <form action="#" method="get" class="sidebar-form">
+        <div class="input-group">
+          <input type="text" name="q" class="form-control" placeholder="Search...">
+          <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+                </button>
+              </span>
+        </div>
+      </form>
+      <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-       
-       
         
         <li class="treeview">
           <a href="#">
-            <i class="fa fa-laptop"></i>
-            <span>功能分类</span>
+            <i class="fa fa-pie-chart"></i>
+            <span>芯片管理</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
           </a>
           <ul class="treeview-menu">
-            
-            	<li><a href="classifyChipsAndDivide?function=1"><i class="fa fa-circle-o"></i> 与非门</a></li>
-	            <li><a href="classifyChipsAndDivide?function=2"><i class="fa fa-circle-o"></i> 反相器</a></li>
-	            <li><a href="classifyChipsAndDivide?function=3"><i class="fa fa-circle-o"></i> 驱动器</a></li>
-	            <li><a href="classifyChipsAndDivide?function=4"><i class="fa fa-circle-o"></i>与门</a></li>
-	            <li><a href="classifyChipsAndDivide?function=5"><i class="fa fa-circle-o"></i> 或非门</a></li>
-	            <li><a href="classifyChipsAndDivide?function=6"><i class="fa fa-circle-o"></i> 缓冲器</a></li>
-	            <li><a href="classifyChipsAndDivide?function=7"><i class="fa fa-circle-o"></i> 译码器</a></li>
-	            <li><a href="classifyChipsAndDivide?function=8"><i class="fa fa-circle-o"></i> 数值比较器</a></li>
-	            <li><a href="classifyChipsAndDivide?function=9"><i class="fa fa-circle-o"></i> 异或/异或非门</a></li>
-	            <li><a href="classifyChipsAndDivide?function=10"><i class="fa fa-circle-o"></i> 计数器</a></li>
-	            <li><a href="classifyChipsAndDivide?function=11"><i class="fa fa-circle-o"></i> 寄存器</a></li>
-	            <li><a href="classifyChipsAndDivide?function=12"><i class="fa fa-circle-o"></i> 校验器</a></li>
-	            <li><a href="classifyChipsAndDivide?function=13"><i class="fa fa-circle-o"></i>  函数产生器</a></li>
-	            <li><a href="classifyChipsAndDivide?function=14"><i class="fa fa-circle-o"></i> 全加器</a></li>
-          	
-          </ul>
-        </li>
-        
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-table"></i> <span>芯片查询</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="search_by_modelid.jsp" ><i class="fa fa-circle-o"></i>按型号查询</a></li>
-            <li><a href="search_by_id.jsp"><i class="fa fa-circle-o"></i>按ID查询</a></li>
+            <li><a href="add_chips.jsp"><i class="fa fa-circle-o"></i> 添加芯片</a></li>
+            <li><a href="delete_chips.jsp"><i class="fa fa-circle-o"></i> 删除芯片</a></li>
           
-            <li><a href="advancedSearch.jsp" ><i class="fa fa-circle-o"></i>高级查询</a></li>
+            <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> 批量导出芯片信息</a></li>
           </ul>
         </li>
-        
-        <li><a href="documentation/index.html"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
-        
-      </ul>
     </section>
     <!-- /.sidebar -->
   </aside>
@@ -269,32 +260,83 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        芯片查询
+       	 添加芯片
         <small></small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Examples</a></li>
-        <li class="active">Blank page</li>
+        <li><a href="#">芯片管理</a></li>
+        <li class="active">添加芯片</li>
       </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
 
-     <!-- search form -->
-      <form action="SearchChipsByID" method="post" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="chipID" class="form-control" placeholder="请输入芯片ID">
-          <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
+      <!-- Default box -->
+      <div class="box">
+        <div class="box-header with-border">
+          <h3 class="box-title">添加芯片</h3>
+
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                    title="Collapse">
+              <i class="fa fa-minus"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+              <i class="fa fa-times"></i></button>
+          </div>
         </div>
-        <s:fielderror key="IDerr"></s:fielderror>
-      </form>
-      
-      <!-- /.search form -->
+        <div class="box-body">
+          <form role="form" action="adminAddChips" method="post">
+                <!-- text input -->
+                <div class="form-group">
+                  <label>芯片名称</label>
+                      	
+                  <input type="text" class="form-control" placeholder="请输入芯片名称" name="chipName">
+                </div>
+                
+               
+                <div class="form-group">
+                  <label>芯片型号</label>
+                  <input type="text" class="form-control" placeholder="请输入芯片型号" name="modelID">
+                  
+                </div>
+
+                <!-- textarea -->
+                <div class="form-group">
+                  <label>芯片功能</label>
+                  <textarea class="form-control" rows="3" placeholder="请输入芯片功能" name="functions"></textarea>
+                  
+                </div>
+                <div class="form-group">
+                  <label>芯片管脚数</label>
+                  <textarea class="form-control" rows="3" placeholder="请输入芯片管脚数" name="pinNumber"></textarea>
+                </div>
+                
+                <div class="form-group">
+                  <label>芯片管脚定义</label>
+                  <textarea class="form-control" rows="3" placeholder="请输入芯片管脚定义" name="pinDefination"></textarea>
+                </div>
+                
+                <div class="form-group">
+                  <label>芯片介绍</label>
+                  <textarea class="form-control" rows="3" placeholder="请输入芯片介绍" name="chipIntroduction"></textarea>
+                </div>
+                <div>
+                	<span class="input-group-btn">
+                      <button type="submit" class="btn btn-info btn-flat">添加</button>
+                    </span>
+                </div>
+            </form>
+        </div>
+        <!-- /.box-body -->
+        
+        <!-- /.box-footer-->
+        
+        
+      </div>
+      <!-- /.box -->
+       
 
     </section>
     <!-- /.content -->
@@ -525,4 +567,3 @@
 </script>
 </body>
 </html>
-

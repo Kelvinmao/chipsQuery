@@ -10,6 +10,8 @@ import java.util.Iterator;
 
 import org.junit.Test;
 
+import com.opensymphony.xwork2.Result;
+
 import chipsmanager.dbprocess.dbClose;
 import chipsmanager.dbprocess.dbConn;
 import chipsmanager.javabean.Chips;;
@@ -20,6 +22,53 @@ import chipsmanager.javabean.Chips;;
  *
  */
 public class chipsDataDao  {
+	
+	/**
+	 * @param chip_id
+	 * @return
+	 * 查询芯片ID是否存在
+	 */
+	public boolean validChipID(String chip_id){
+		Connection connection=null;
+		PreparedStatement preparedStatement=null;
+		ResultSet resultSet=null;
+		String querySQL="SELECT CHIP_ID FROM CHIPS WHERE CHIP_ID=?";
+		try{
+			connection=dbConn.connectToDatabase();
+			preparedStatement=connection.prepareStatement(querySQL);
+			preparedStatement.setString(1, chip_id);
+			resultSet=preparedStatement.executeQuery();
+			if(resultSet.next())
+				return true;
+		}catch(SQLException ex){
+			ex.printStackTrace();
+		}finally{
+			dbClose.closeQueryConnectionToDatabase(connection, preparedStatement, resultSet);
+		}
+		return false;
+	}
+	
+	/**
+	 * @param chip_id
+	 * 功能：根据chip_id删除芯片
+	 */
+	public void deleteChip(String chip_id){
+		Connection connection=null;
+		PreparedStatement preparedStatement=null;
+		String modifySQL="DELETE FROM CHIPS WHERE CHIP_ID=?";
+		try{
+			connection=dbConn.connectToDatabase();
+			preparedStatement=connection.prepareStatement(modifySQL);
+			preparedStatement.setString(1, chip_id);
+			preparedStatement.executeUpdate();
+		}catch(SQLException ex){
+			ex.printStackTrace();
+		}finally{
+			dbClose.modifyConnectionClose(connection, preparedStatement);
+		}
+	}
+	
+	
 	/**
 	 * @param model_id
 	 * @return
@@ -168,6 +217,7 @@ public class chipsDataDao  {
 			preparedStatement.setString(1, model_id);
 			rSet=preparedStatement.executeQuery();
 			while(rSet.next()){
+				this.increaseQueryFreq(rSet.getInt("CHIP_ID"));
 				return new Chips(rSet.getInt("CHIP_ID"), 
 						rSet.getString("MODEL_ID"), 
 						rSet.getString("CHIP_NAME"), 
@@ -195,7 +245,7 @@ public class chipsDataDao  {
 		PreparedStatement preparedStatement=null;
 		ResultSet rSet=null;
 		String querySQL="SELECT * FROM CHIPS WHERE MODEL_ID LIKE ?";
-		System.out.println("modelid"+model_id);
+//		System.out.println("modelid"+model_id);
 		ArrayList<Chips> chipsList=new ArrayList<>();
 		try{
 			connection=dbConn.connectToDatabase();
@@ -211,6 +261,7 @@ public class chipsDataDao  {
 						rSet.getString("PIN_DEFINATION"), 
 						rSet.getString("CHIP_INTRODUCTION")
 				);
+				this.increaseQueryFreq(rSet.getInt("CHIP_ID"));
 				chipsList.add(tmp);
 			}
 		}catch(SQLException ex){
@@ -275,6 +326,7 @@ public class chipsDataDao  {
 			preparedStatement.setString(1, chip_id);
 			rSet=preparedStatement.executeQuery();
 			while(rSet.next()){
+				this.increaseQueryFreq(rSet.getInt("CHIP_ID"));
 				return new Chips(rSet.getInt("CHIP_ID"), 
 						rSet.getString("MODEL_ID"), 
 						rSet.getString("CHIP_NAME"), 
@@ -490,6 +542,133 @@ public class chipsDataDao  {
 		return false;
 	}
 	
+	
+	/**
+	 * @param chip_name
+	 * @return
+	 * 功能：获取chip_name相同的chip数量，并配合下面那个函数完成分页
+	 */
+	public int searchByChipName(String chip_name){
+		Connection connection=null;
+		PreparedStatement preparedStatement=null;
+		ResultSet resultSet=null;
+		String querySQL="SELECT COUNT(*) FROM CHIPS WHERE CHIP_NAME LIKE ?";
+		try{
+			connection=dbConn.connectToDatabase();
+			preparedStatement=connection.prepareStatement(querySQL);
+			preparedStatement.setString(1, "%"+chip_name+"%");
+			resultSet=preparedStatement.executeQuery();
+			while(resultSet.next())
+				return resultSet.getInt(1);
+		}catch(SQLException ex){
+			ex.printStackTrace();
+		}finally{
+			dbClose.closeQueryConnectionToDatabase(connection, preparedStatement, resultSet);
+		}
+		return 0;
+	}
+	/**
+	 * @param curPage
+	 * @param page_size
+	 * @param chip_name
+	 * @return
+	 * 功能：根据chip_name返回芯片（模糊查询）
+	 */
+	public ArrayList<Chips> searchByChipName(int curPage,int page_size,String chip_name){
+		Connection connection=null;
+		PreparedStatement preparedStatement=null;
+		ResultSet resultSet=null;
+		ArrayList<Chips> chipsList=new ArrayList<>();
+		String querySQL="SELECT * FROM CHIPS WHERE CHIP_NAME LIKE ? LIMIT ?,?";
+		try{
+			connection=dbConn.connectToDatabase();
+			preparedStatement=connection.prepareStatement(querySQL);
+			preparedStatement.setString(1, "%"+chip_name+"%");
+			preparedStatement.setInt(2, (curPage-1)*page_size);
+			preparedStatement.setInt(3, page_size);
+			resultSet=preparedStatement.executeQuery();
+			while(resultSet.next()){
+				Chips tmp=new Chips(resultSet.getInt("CHIP_ID"), 
+						resultSet.getString("MODEL_ID"), 
+						resultSet.getString("CHIP_NAME"), 
+						resultSet.getString("FUNCTIONS"), 
+						resultSet.getInt("PIN_NUMBER"), 
+						resultSet.getString("PIN_DEFINATION"), 
+						resultSet.getString("CHIP_INTRODUCTION")
+				);
+				chipsList.add(tmp);
+			}
+		}catch(SQLException ex){
+			ex.printStackTrace();
+		}finally{
+			dbClose.closeQueryConnectionToDatabase(connection, preparedStatement, resultSet);
+		}
+		return chipsList;
+	}
+	
+	/**
+	 * @param model_id
+	 * @return
+	 * 功能：对modelid进行模糊查询并返回结果数量
+	 */
+	public int searchByModelID(String model_id){
+		Connection connection=null;
+		PreparedStatement preparedStatement=null;
+		ResultSet resultSet=null;
+		String querySQL="SELECT COUNT(*) FROM CHIPS WHERE MODEL_ID LIKE ?";
+		try{
+			connection=dbConn.connectToDatabase();
+			preparedStatement=connection.prepareStatement(querySQL);
+			resultSet=preparedStatement.executeQuery();
+			while(resultSet.next())
+				return resultSet.getInt(1);
+		}catch(SQLException ex){
+			ex.printStackTrace();
+		}finally{
+			dbClose.closeQueryConnectionToDatabase(connection, preparedStatement, resultSet);
+		}
+		return 0;
+	}
+	
+	/**
+	 * @param curPage
+	 * @param page_size
+	 * @param model_id
+	 * @return
+	 * 功能：对modelid进行模糊查询并分页
+	 */
+	public ArrayList<Chips> searchByModelID(int curPage,int page_size,String model_id){
+		Connection connection=null;
+		PreparedStatement preparedStatement=null;
+		ResultSet resultSet=null;
+		ArrayList<Chips> chipsList=new ArrayList<>();
+		String querySQL="SELECT * FROM CHIPS WHERE MODEL_ID LIKE ? LIMIT ?,?";
+		try{
+			connection=dbConn.connectToDatabase();
+			preparedStatement=connection.prepareStatement(querySQL);
+			preparedStatement.setString(1, "%"+model_id+"%");
+			preparedStatement.setInt(2, (curPage-1)*page_size);
+			preparedStatement.setInt(3, page_size);
+			resultSet=preparedStatement.executeQuery();
+			while(resultSet.next()){
+				Chips tmp=new Chips(resultSet.getInt("CHIP_ID"), 
+						resultSet.getString("MODEL_ID"), 
+						resultSet.getString("CHIP_NAME"), 
+						resultSet.getString("FUNCTIONS"), 
+						resultSet.getInt("PIN_NUMBER"), 
+						resultSet.getString("PIN_DEFINATION"), 
+						resultSet.getString("CHIP_INTRODUCTION")
+				);
+				chipsList.add(tmp);
+			}
+		}catch(SQLException ex){
+			ex.printStackTrace();
+		}finally{
+			dbClose.closeQueryConnectionToDatabase(connection, preparedStatement, resultSet);
+		}
+		return chipsList;
+	}
+	
 	/**
 	 * @param new_id
 	 * 功能：通过旧的CHIP_ID更改芯片ID
@@ -569,7 +748,7 @@ public class chipsDataDao  {
 			preparedStatement=connection.prepareStatement(modifySQL);
 			preparedStatement.setString(1, new_function);
 			preparedStatement.setInt(2, chip_id);
-			preparedStatement.executeQuery();
+			preparedStatement.executeUpdate();
 		}catch(SQLException ex){
 			ex.printStackTrace();
 		}finally{
@@ -643,6 +822,34 @@ public class chipsDataDao  {
 		}
 	}
 	
+	/**
+	 * @param chip
+	 * 功能：添加芯片
+	 */
+	public void addChips(Chips chip){
+		Connection connection=null;
+		PreparedStatement preparedStatement=null;
+		String modifySQL="INSERT INTO CHIPS(MODEL_ID,CHIP_NAME,FUNCTIONS,PIN_NUMBER,PIN_DEFINATION,CHIP_INTRODUCTION)VALUES(?,?,?,?,?,?)";
+		try{
+			connection=dbConn.connectToDatabase();
+			preparedStatement=connection.prepareStatement(modifySQL);
+			preparedStatement.setString(1, chip.getModelID());
+			preparedStatement.setString(2, chip.getChipName());
+			preparedStatement.setString(3, chip.getFunctions());
+			preparedStatement.setInt(4, chip.getPinNumber());
+			preparedStatement.setString(5, chip.getPinDefination());
+			preparedStatement.setString(6, chip.getPinIntroduction());
+			preparedStatement.executeUpdate();
+		}catch(SQLException ex){
+			ex.printStackTrace();
+		}finally{
+			dbClose.modifyConnectionClose(connection, preparedStatement);
+		}
+	}
+	
+	/**
+	 * 功能：管理员界面获取信息
+	 */
 	public void getAdminInfo(){
 		Connection connection=null;
 		PreparedStatement preparedStatement=null;
@@ -651,9 +858,86 @@ public class chipsDataDao  {
 		int chipMount=0;
 		try{
 			connection=dbConn.connectToDatabase();
-			preparedStatement=connection.prepareStatement(querySQL);
+			preparedStatement=connection.prepareStatement(queryMountSQL);
 			resultSet=preparedStatement.executeQuery();
 			chipMount=resultSet.getInt(1);
+		}catch(SQLException ex){
+			ex.printStackTrace();
+		}finally{
+			dbClose.closeQueryConnectionToDatabase(connection, preparedStatement, resultSet);
 		}
+	}
+	
+	/**
+	 * @return
+	 * 功能：用于获取芯片总数
+	 */
+	public int getChipAmount(){
+		Connection connection=null;
+		PreparedStatement preparedStatement=null;
+		ResultSet resultSet=null;
+		String querySQL="SELECT COUNT(*) FROM CHIPS";
+		try{
+			connection=dbConn.connectToDatabase();
+			preparedStatement=connection.prepareStatement(querySQL);
+			resultSet=preparedStatement.executeQuery();
+			while(resultSet.next())
+				return resultSet.getInt(1);
+		}catch(SQLException ex){
+			ex.printStackTrace();
+		}finally{
+			dbClose.closeQueryConnectionToDatabase(connection, preparedStatement, resultSet);
+		}
+		return 0;
+	}
+	
+	/**
+	 * @param chip_id
+	 * 功能：查询频率自增
+	 */
+	public void increaseQueryFreq(int chip_id){
+		Connection connection=null;
+		PreparedStatement preparedStatement=null;
+		String modifySQL="UPDATE CHIPS SET QUERY_FREQ=QUERY_FREQ+1 WHERE CHIP_ID=?";
+		try{
+			connection=dbConn.connectToDatabase();
+			preparedStatement=connection.prepareStatement(modifySQL);
+			preparedStatement.setInt(1, chip_id);
+			preparedStatement.executeUpdate();
+		}catch(SQLException ex){
+			ex.printStackTrace();
+		}finally{
+			dbClose.modifyConnectionClose(connection, preparedStatement);
+		}
+	}
+	
+	/**
+	 * @return
+	 * 功能：返回频繁查询的芯片列表（前十位）
+	 */
+	public ArrayList<Chips> getHighFreqChips(){
+		ArrayList<Chips> highFreqList=new ArrayList<>();
+		Connection connection=null;
+		PreparedStatement preparedStatement=null;
+		ResultSet resultSet=null;
+		String querySQL="SELECT * FROM CHIPS ORDER BY QUERY_FREQ DESC LIMIT 10";
+		try{
+			connection=dbConn.connectToDatabase();
+			preparedStatement=connection.prepareStatement(querySQL);
+			resultSet=preparedStatement.executeQuery();
+			while(resultSet.next()){
+				Chips tmp= new Chips(resultSet.getInt("CHIP_ID"), 
+						resultSet.getString("CHIP_NAME"), 
+						resultSet.getString("FUNCTIONS"), 
+						resultSet.getString("QUERY_FREQ")
+				);
+				highFreqList.add(tmp);
+			}
+		}catch(SQLException ex){
+			ex.printStackTrace();
+		}finally{
+			dbClose.closeQueryConnectionToDatabase(connection, preparedStatement, resultSet);
+		}
+		return highFreqList;
 	}
 }

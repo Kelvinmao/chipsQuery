@@ -12,5 +12,6 @@
 	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.0"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="C:/Users/kelvin/Desktop/CodeRepo/jexcelapi_2_6_12/jxl.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kelvin/Desktop/CodeRepo/jedis-2.9.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

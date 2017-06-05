@@ -2,6 +2,7 @@ package chipsmanager.actions;
 
 import java.util.ArrayList;
 
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
@@ -72,7 +73,6 @@ public class SearchByModelIDAction extends ActionSupport{
 		pageBean pagebean=getSelectPageBean(10, page, modelID);
 		HttpServletRequest request=ServletActionContext.getRequest();
 		request.setAttribute("pageBean", pagebean);
-		ArrayList<Chips> list=pagebean.getList();
 		return SUCCESS;
 	}
 

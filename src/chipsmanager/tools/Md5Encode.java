@@ -25,4 +25,7 @@ public class Md5Encode {
 		}
 		return digestedUsrPwd;
 	}
+	public static void main(String[] args) {
+		System.out.println(new Md5Encode().getMd5Code("bupt123"));
+	}
 }

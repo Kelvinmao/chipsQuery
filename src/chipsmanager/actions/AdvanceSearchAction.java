@@ -262,6 +262,7 @@ public class AdvanceSearchAction extends ActionSupport{
 		 ArrayList<Chips> chipList=new ArrayList<>();
 		 try{
 			 connection=dbConn.connectToDatabase();
+//			 System.out.println(querySQL);
 			 preparedStatement=connection.prepareStatement(querySQL);
 			 preparedStatement.setString(1, "%"+chipname+"%");
 			 preparedStatement.setString(2, "%"+modelid+"%");
@@ -270,6 +271,7 @@ public class AdvanceSearchAction extends ActionSupport{
 			 resultSet=preparedStatement.executeQuery();
 			 
 			 while(resultSet.next()){
+				 	new chipsDataDao().increaseQueryFreq(resultSet.getInt("CHIP_ID"));
 					Chips tmp=new Chips(resultSet.getInt("CHIP_ID"), 
 							resultSet.getString("MODEL_ID"), 
 							resultSet.getString("CHIP_NAME"), 

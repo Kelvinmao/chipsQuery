@@ -3,6 +3,7 @@ package chipsmanager.actions;
 
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
@@ -51,10 +52,11 @@ public class AdminLoginAction extends ActionSupport{
 	@Override
 	public String execute() throws Exception {
 		if(new AdminDataDao().validAdmin(adminID, Md5Encode.getMd5Code(adminPwd))){
+			HttpServletResponse response=ServletActionContext.getResponse();
 			Admin admin=new Admin(adminID, adminPwd);
 			HttpSession session=ServletActionContext.getRequest().getSession();
 			session.setAttribute("admin", admin);
-			
+			response.sendRedirect("admin.jsp");
 			return SUCCESS;
 		}
 		return ERROR;

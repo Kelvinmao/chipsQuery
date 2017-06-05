@@ -5,8 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.apache.tomcat.util.security.MD5Encoder;
+
 import chipsmanager.dbprocess.dbClose;
 import chipsmanager.dbprocess.dbConn;
+import chipsmanager.tools.Md5Encode;
 
 public class AdminDataDao {
 	/**
@@ -25,8 +28,10 @@ public class AdminDataDao {
 			preparedStatement=connection.prepareStatement(querySQL);
 			preparedStatement.setString(1, admin_id);
 			resultSet=preparedStatement.executeQuery();
-			if(resultSet.next())
-				return true;
+			if(resultSet.next()){
+				if(admin_pwd.equals(resultSet.getString("admin_pwd")))
+					return true;
+			}
 		}catch(SQLException ex){
 			ex.printStackTrace();
 		}finally {

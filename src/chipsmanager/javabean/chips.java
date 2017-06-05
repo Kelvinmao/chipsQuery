@@ -1,11 +1,47 @@
 package chipsmanager.javabean;
 
+import java.util.List;
+
 /**
  * @author MaoKaining(毛凯宁)
  * 功能:构建chips实例
  *
  */
 public class Chips {
+	public Chips(int chipID, String chipName, String functions, int searchFreq) {
+		super();
+		this.chipID = chipID;
+		ChipName = chipName;
+		this.functions = functions;
+		this.searchFreq = searchFreq;
+	}
+
+	public Chips(int chipID, String chipName,String functions,String freq) {
+		super();
+		this.chipID = chipID;
+		this.ChipName = chipName;
+		this.functions = functions;
+		this.searchFreq=Integer.parseInt(freq);
+	}
+
+	public Chips(String modelID, String chipName, String functions) {
+		super();
+		ModelID = modelID;
+		ChipName = chipName;
+		this.functions = functions;
+	}
+
+	public Chips(String modelID, String chipName, String functions, int pinNumber, String pinDefination,
+			String pinIntroduction) {
+		super();
+		ModelID = modelID;
+		ChipName = chipName;
+		this.functions = functions;
+		this.pinNumber = pinNumber;
+		this.pinDefination = pinDefination;
+		this.pinIntroduction = pinIntroduction;
+	}
+
 	public Chips(int chipID, String modelID, String chipName, String functions, int pinNumber, String pinDefination,
 			String pinIntroduction) {
 		super();
@@ -16,6 +52,13 @@ public class Chips {
 		this.pinNumber = pinNumber;
 		this.pinDefination = pinDefination;
 		this.pinIntroduction = pinIntroduction;
+	}
+	
+	public Chips(List<String> list){
+		this.searchFreq=Integer.parseInt(list.get(0));
+		this.ChipName=list.get(1);
+		this.functions=list.get(2);
+		this.chipID=Integer.parseInt(list.get(3));
 	}
 	
 	@Override
@@ -30,6 +73,9 @@ public class Chips {
 	private int pinNumber;
 	private String pinDefination;
 	private String pinIntroduction;
+	private int searchFreq;
+	
+	
 	
 	public int getChipID() {
 		return chipID;
@@ -72,5 +118,19 @@ public class Chips {
 	}
 	public void setPinIntroduction(String pinIntroduction) {
 		this.pinIntroduction = pinIntroduction;
+	}
+
+	/**
+	 * @return the searchFreq
+	 */
+	public int getSearchFreq() {
+		return searchFreq;
+	}
+
+	/**
+	 * @param searchFreq the searchFreq to set
+	 */
+	public void setSearchFreq(int searchFreq) {
+		this.searchFreq = searchFreq;
 	}
 }	
