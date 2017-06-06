@@ -13,5 +13,7 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="C:/Users/kelvin/Desktop/CodeRepo/jexcelapi_2_6_12/jxl.jar"/>
 	<classpathentry kind="lib" path="C:/Users/kelvin/Desktop/CodeRepo/jedis-2.9.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kelvin/Desktop/CodeRepo/poi-bin-3.16-20170419/poi-3.16/poi-3.16.jar"/>
+	<classpathentry kind="lib" path="C:/Users/kelvin/Desktop/CodeRepo/poi-bin-3.16-20170419/poi-3.16/poi-ooxml-3.16.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

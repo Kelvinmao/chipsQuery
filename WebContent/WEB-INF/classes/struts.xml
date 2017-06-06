@@ -58,6 +58,16 @@
             method="execute">
             <result name="success">export_success.jsp</result>
     </action>
+    
+<!--     导出整个数据库到excel -->
+    <action name="ExportDatabase" class="chipsmanager.actions.ExportDatabaseToExcelAction" method="execute">
+    		<result name="success">export_success.jsp</result>
+    </action>
+    
+<!--     导入excel到数据库 -->
+    <action name="ImportDatabase" class="chipsmanager.actions.ImportExcelDatabaseAction" method="execute">
+    		<result name="success">export_success.jsp</result>
+    </action>
 </package>
 
 <package name="login" extends="struts-default">
@@ -126,7 +136,12 @@
 		<result name="error">index.jsp</result>
 		<result name="input">index.jsp</result>	
 	</action>
-	
+</package>
 
+<!-- 绘图相关操作 -->
+<package name="graphic" extends="json-default">
+	<action name="chipFunctionPercent" class="chipsmanager.actions.ChipPercentPictrueAction">
+		<result name="success">index.jsp</result>
+	</action>
 </package>
 </struts>

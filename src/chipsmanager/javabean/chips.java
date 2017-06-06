@@ -8,6 +8,10 @@ import java.util.List;
  *
  */
 public class Chips {
+	public Chips(){
+		
+	}
+	
 	public Chips(int chipID, String chipName, String functions, int searchFreq) {
 		super();
 		this.chipID = chipID;

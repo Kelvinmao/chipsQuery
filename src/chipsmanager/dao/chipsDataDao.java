@@ -5,7 +5,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 import org.junit.Test;
@@ -14,7 +16,9 @@ import com.opensymphony.xwork2.Result;
 
 import chipsmanager.dbprocess.dbClose;
 import chipsmanager.dbprocess.dbConn;
-import chipsmanager.javabean.Chips;;
+import chipsmanager.javabean.Chips;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;;
 /**
  * @author MaoKaining(毛凯宁)
  * @version 1.0
@@ -939,5 +943,54 @@ public class chipsDataDao  {
 			dbClose.closeQueryConnectionToDatabase(connection, preparedStatement, resultSet);
 		}
 		return highFreqList;
+	}
+	
+	/**
+	 * @return
+	 * 功能：计算各功能芯片所占比重并以hashmap返回
+	 */
+	public JSONArray computeAllFunctionsPercent(){
+		Connection connection=null;
+		PreparedStatement preparedStatement=null;
+		ResultSet resultKeySet=null;
+		ResultSet resultValueSet=null;
+		String [] valueArr=null;
+		String queryKeySQL="SELECT DISTINCT FUNCTIONS FROM CHIPS ";
+		String queryValueSQL="SELECT COUNT(*) FROM CHIPS WHERE FUNCTIONS=? ";
+		ArrayList<String> keySet=new ArrayList<>();
+		ArrayList<String> valueSet=new ArrayList<>();
+		HashMap<String, String> map=new HashMap<>();
+		int index=0;
+		JSONArray jsonArr=new JSONArray();
+		try{
+			connection=dbConn.connectToDatabase();
+			preparedStatement=connection.prepareStatement(queryKeySQL);
+			resultKeySet=preparedStatement.executeQuery();
+			while(resultKeySet.next())
+				keySet.add(resultKeySet.getString("FUNCTIONS"));
+			for(String key : keySet){
+				preparedStatement=connection.prepareStatement(queryValueSQL);
+				preparedStatement.setString(1, key);
+				resultValueSet=preparedStatement.executeQuery();
+				while(resultValueSet.next())
+					valueSet.add(resultValueSet.getString(1));
+			}
+			while(index<6){
+				map.put("value", valueSet.get(index));
+				map.put("label", keySet.get(index));
+				jsonArr.add(JSONObject.fromObject(map));
+				++index;
+			}
+		}catch(SQLException ex){
+			ex.printStackTrace();
+		}finally{
+			dbClose.closeQueryConnectionToDatabase(connection, preparedStatement, resultValueSet);
+			dbClose.closeQueryConnectionToDatabase(connection, preparedStatement, resultKeySet);
+		}
+		return jsonArr;
+	}
+	
+	public static void main(String[] args) {
+		new chipsDataDao().computeAllFunctionsPercent();
 	}
 }

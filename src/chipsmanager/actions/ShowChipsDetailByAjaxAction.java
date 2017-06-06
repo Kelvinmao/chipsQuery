@@ -53,7 +53,7 @@ public class ShowChipsDetailByAjaxAction extends ActionSupport{
 	public String execute() throws Exception {
 		Chips chip=new chipsDataDao().searchChipsByChipId(chipID);
 		HashMap<String, String> map=new HashMap<>();
-		String [] itemArr={"id","name","func","pinnum","pindef","pinintro"};
+		String [] itemArr={"id","name","func","pinnum","pindef","intro"};
 		String [] valueArr={
 				String.valueOf(chip.getChipID()),
 				chip.getChipName(),

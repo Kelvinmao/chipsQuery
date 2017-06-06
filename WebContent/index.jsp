@@ -496,15 +496,25 @@
           <!-- Custom tabs (Charts with tabs)-->
           <div class="nav-tabs-custom">
             <!-- Tabs within a box -->
-            <ul class="nav nav-tabs pull-right">
-              <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>
-              <li><a href="#sales-chart" data-toggle="tab">Donut</a></li>
-              <li class="pull-left header"><i class="fa fa-inbox"></i> Sales</li>
-            </ul>
+            
             <div class="tab-content no-padding">
-              <!-- Morris chart - Sales -->
-              <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;"></div>
-              <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>
+          <!-- DONUT CHART -->
+          <div class="box box-danger">
+            <div class="box-header with-border">
+              <h3 class="box-title">各功能占比</h3>
+
+              <div class="box-tools pull-right">
+                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                </button>
+                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+              </div>
+            </div>
+            <div class="box-body">
+              <canvas id="pieChart" style="height:250px"></canvas>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
             </div>
           </div>
           <!-- /.nav-tabs-custom -->
@@ -1065,7 +1075,29 @@
         <h4 class="modal-header" id="myModalLabel">热搜详情</h4>
       </div>
       <div class="modal-body" id="hot-detail">
-        	
+        	<table id="detail-table" class="table table-bordered table-hover" width="100%">
+                        <thead>
+                        <tr>
+                            <th class="text-center text-nowrap">芯片ID</th>
+                            <th class="text-center text-nowrap">芯片名称</th>
+                            <th class="text-center text-nowrap">芯片功能</th>
+                            <th class="text-center text-nowrap">管脚数</th>
+                            <th class="text-center text-nowrap">管脚定义</th>
+                            <th class="text-center text-nowrap">芯片介绍</th>
+                        </tr>
+                        </thead>
+                        <tbody></tbody>
+                        <tfoot>
+                        <tr>
+                            <th class="text-center text-nowrap">芯片ID</th>
+                            <th class="text-center text-nowrap">芯片名称</th>
+                            <th class="text-center text-nowrap">芯片功能</th>
+                            <th class="text-center text-nowrap">管脚数</th>
+                            <th class="text-center text-nowrap">管脚定义</th>
+                            <th class="text-center text-nowrap">芯片介绍</th>
+                        </tr>
+                        </tfoot>
+                    </table>
       </div>
       
     </div>
@@ -1107,6 +1139,10 @@
 <script src="dist/js/adminlte.min.js"></script>
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="dist/js/pages/dashboard.js"></script>
+<!-- ChartJS 1.0.1 -->
+<script src="plugins/chartjs/Chart.min.js"></script>
+<script type="text/javascript" src="plugins/morris/morris.js"></script>
+<script type="text/javascript" src="plugins/morris/morris.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
 <script type="text/javascript" src="js/logout.js"></script>
@@ -1115,5 +1151,8 @@
 ajaxData();
 setInterval(function(){ajaxData()},60000);
 </script>
+<script type="text/javascript" src="js/getDetail.js"></script>
+<script type="text/javascript" src="js/donutChart.js"></script>
+drawPictrue();
 </body>
 </html>

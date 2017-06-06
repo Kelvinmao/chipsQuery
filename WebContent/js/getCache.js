@@ -16,7 +16,7 @@ function ajaxData(){
 				$("tr:has(td)").remove();  
 			    $.each(jsonarray, function (index, data) {  
 			        $("#table").append($('<tr data-toggle="modal" data-target="#detail-modal"/>')  
-			                .append($('<td/>').html(data.id))  
+			                .append($('<td id="chips-id" onclick="getDetail();"/>').html(data.id))  
 			                .append($('<td/>').html(data.name))  
 			                .append($('<td/>').html(data.func)) 
 			                .append($('<td/>').html(data.freq)) 
@@ -26,6 +26,7 @@ function ajaxData(){
 	    });          
 	});  
 }
+
 
 function sortByKey(array, key) {
     return array.sort(function(a, b) {
