@@ -1153,6 +1153,8 @@ setInterval(function(){ajaxData()},60000);
 </script>
 <script type="text/javascript" src="js/getDetail.js"></script>
 <script type="text/javascript" src="js/donutChart.js"></script>
-drawPictrue();
+<script type="text/javascript">
+setInterval(function(){drawPictrue()},600000)
+</script>
 </body>
 </html>

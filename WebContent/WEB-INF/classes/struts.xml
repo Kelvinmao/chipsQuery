@@ -5,6 +5,8 @@
 <struts>
 <constant name="struts.devMode" value="false" />
 <constant name="struts.enable.DynamicMethodInvocation" value="true"/>
+<!-- 指定允许上传的文件最大字节数。默认值是2097152(2M) -->
+<constant name="struts.multipart.maxSize" value="10701096"/>
 <package name="showChips" extends="struts-default">
 <!--    芯片按功能分类展示 -->
       <action name="classifyChipsAndDivide" 
@@ -144,4 +146,22 @@
 		<result name="success">index.jsp</result>
 	</action>
 </package>
+
+<!-- 数据文件上传 -->
+<package name="upload" extends="struts-default">
+	<action name="uploadExcel" class="chipsmanager.actions.UploadFileAction" method="execute">
+	 		<interceptor-ref name="fileUpload">
+                <!-- 允许后缀名为xls的文件上传 -->     
+				<param name="allowedExtensions">  
+    				xls  
+				</param>  
+             <param name="maximumSize">102400000</param>  
+            </interceptor-ref>
+            <!-- 默认的拦截器，必须要写 -->
+            <interceptor-ref name="defaultStack" />
+		<result name="success">index.jsp</result>
+		<result name="input">index.jsp</result>
+	</action>
+</package>
+
 </struts>

@@ -86,18 +86,19 @@ $(document).ready(function () {
 			PieData=$.parseJSON(data);  
 			$.each(PieData, function (index, data) {
 				data["value"]=parseInt(data["value"]);
-				data["color"]="#3c8dbc";
-				data["highlight"]="#3c8dbc";
+				data["color"]=randomHexColor();
+				data["highlight"]=randomHexColor();
 			});
 			console.log(PieData);
 			//Create pie or douhnut chart
 		    // You can switch between pie and douhnut using the method below.
 		    pieChart.Doughnut(PieData, pieOptions);
 		}
-    });     
-    
-   
-    
+    });      
 });
+
+function randomHexColor() { //随机生成十六进制颜色
+	 return '#' + ('00000' + (Math.random() * 0x1000000 << 0).toString(16)).substr(-6);
+}
 
     

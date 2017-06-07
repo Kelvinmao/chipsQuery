@@ -21,12 +21,25 @@ import chipsmanager.javabean.*;
 
 public class ImportExcelToDatabase {
 	
-    public static final String EXCEL_PATH = "d:\\import.xls";
+    private String dataPath;
     
     public static final String INSERT_CHIP_SQL = "INSERT INTO CHIPS(MODEL_ID, CHIP_NAME, FUNCTIONS, PIN_NUMBER, PIN_DEFINATION,CHIP_INTRODUCTION) values(?,?,?, ?, ?, ?)";
+    /**
+	 * @return the dataPath
+	 */
+	public String getDataPath() {
+		return dataPath;
+	}
+
+	/**
+	 * @param dataPath the dataPath to set
+	 */
+	public void setDataPath(String dataPath) {
+		this.dataPath = dataPath;
+	}
 
     public List<Chips> readXls() throws IOException {
-        InputStream is = new FileInputStream(EXCEL_PATH);
+        InputStream is = new FileInputStream(dataPath);
         HSSFWorkbook hssfWorkbook = new HSSFWorkbook(is);
         Chips chips = null;
         List<Chips> list = new ArrayList<Chips>();
@@ -41,8 +54,8 @@ public class ImportExcelToDatabase {
                 HSSFRow hssfRow = hssfSheet.getRow(rowNum);
                 if (hssfRow != null) {
                     chips = new Chips();
-                    HSSFCell chip_name = hssfRow.getCell(0);
-                    HSSFCell model_id = hssfRow.getCell(1);
+                    HSSFCell model_id = hssfRow.getCell(0);
+                    HSSFCell chip_name = hssfRow.getCell(1);
                     HSSFCell function = hssfRow.getCell(2);
                     HSSFCell pin_number = hssfRow.getCell(3);
                     HSSFCell pin_def = hssfRow.getCell(4);
@@ -101,7 +114,7 @@ public class ImportExcelToDatabase {
      
      public void importData() {
 		try {
-			List<Chips> list=new ImportExcelToDatabase().readXls();
+			List<Chips> list=this.readXls();
 			for(int i=0;i<list.size();++i)
 				try {
 					insert(INSERT_CHIP_SQL, list.get(i));
@@ -113,4 +126,6 @@ public class ImportExcelToDatabase {
 		}
 		
 	}
+
+	
 }
