@@ -64,4 +64,27 @@ public class UserDataDao {
 		}
 		return null;
 	}
+	
+	/**
+	 * @return
+	 * 功能：获取用户总数
+	 */
+	public String getUserNum(){
+		Connection connection=null;
+		PreparedStatement preparedStatement=null;
+		ResultSet resultSet=null;
+		String querySQL="select count(*) from userdata";
+		try{
+			connection=dbConn.connectToDatabase();
+			preparedStatement=connection.prepareStatement(querySQL);
+			resultSet=preparedStatement.executeQuery();
+			while(resultSet.next())
+				return resultSet.getString(1);
+		}catch(SQLException ex){
+			ex.printStackTrace();
+		}finally{
+			dbClose.closeQueryConnectionToDatabase(connection, preparedStatement, resultSet);
+		}
+		return null;
+	}
 }
