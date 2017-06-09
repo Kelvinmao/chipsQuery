@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    <%@ taglib prefix="s" uri="/struts-tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,7 +39,7 @@
   <div class="login-box-body">
     <p class="login-box-msg">管理员登录</p>
 
-    <form  method="post" action="AdminLogin">
+    <form method="post" action="AdminLogin">
       <div class="form-group has-feedback">
         <input type="text" class="form-control" placeholder="id" name="adminID">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -54,6 +55,7 @@
               <input type="checkbox" name="remember"> Remember Me
             </label>
           </div>
+          <s:fielderror key="logErr"/>
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
@@ -61,7 +63,7 @@
         </div>
         <!-- /.col -->
       </div>
-      <s:fielderror key="logErr"/>
+      
     </form>
 
     

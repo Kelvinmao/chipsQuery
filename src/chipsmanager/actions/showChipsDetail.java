@@ -1,6 +1,7 @@
 package chipsmanager.actions;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,7 +16,8 @@ import com.opensymphony.xwork2.ActionSupport;
 import chipsmanager.dao.chipsDataDao;
 import chipsmanager.dbprocess.dbClose;
 import chipsmanager.dbprocess.dbConn;
-import chipsmanager.javabean.chips;
+import chipsmanager.javabean.Chips;
+
 
 public class showChipsDetail extends ActionSupport{
 	/**
@@ -57,7 +59,7 @@ public class showChipsDetail extends ActionSupport{
 	public String execute() throws Exception {
 		HttpServletRequest request=ServletActionContext.getRequest();
 		
-		chips queryChip=new chipsDataDao().searchChipsByModelId(modelID);
+		Chips queryChip=new chipsDataDao().searchChipsByModelId(modelID);
 		request.setAttribute("chips", queryChip);	
 		request.setCharacterEncoding("UTF-8");
 		return SUCCESS;

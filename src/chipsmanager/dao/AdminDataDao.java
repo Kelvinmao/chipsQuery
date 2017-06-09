@@ -39,4 +39,23 @@ public class AdminDataDao {
 		}
 		return false;
 	}
+	
+	public String getAdminNum(){
+		Connection connection=null;
+		PreparedStatement preparedStatement=null;
+		ResultSet resultSet=null;
+		String querySQL="select count(*) from admindata";
+		try{
+			connection=dbConn.connectToDatabase();
+			preparedStatement=connection.prepareStatement(querySQL);
+			resultSet=preparedStatement.executeQuery();
+			while(resultSet.next())
+				return resultSet.getString(1);
+		}catch(SQLException ex){
+			ex.printStackTrace();
+		}finally{
+			dbClose.closeQueryConnectionToDatabase(connection, preparedStatement, resultSet);
+		}
+		return null;
+	}
 }

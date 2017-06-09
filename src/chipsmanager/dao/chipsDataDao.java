@@ -990,7 +990,26 @@ public class chipsDataDao  {
 		return jsonArr;
 	}
 	
-	public static void main(String[] args) {
-		new chipsDataDao().computeAllFunctionsPercent();
+	/**
+	 * @return
+	 * 功能：获取功能数目
+	 */
+	public String getFunctionNum(){
+		Connection connection=null;
+		PreparedStatement preparedStatement=null;
+		ResultSet resultSet=null;
+		String querySQL="select count(distinct functions) from chips";
+		try{
+			connection=dbConn.connectToDatabase();
+			preparedStatement=connection.prepareStatement(querySQL);
+			resultSet=preparedStatement.executeQuery();
+			while(resultSet.next())
+				return resultSet.getString(1);
+		}catch(SQLException ex){
+			ex.printStackTrace();
+		}finally{
+			dbClose.closeQueryConnectionToDatabase(connection, preparedStatement, resultSet);
+		}
+		return null;
 	}
 }

@@ -69,7 +69,7 @@ public class UserLoginAction extends ActionSupport{
 			return SUCCESS;
 		}
 		else{
-			this.addFieldError("logErr", "用户名和密码错误");
+			this.addFieldError("logErr", "用户名或密码错误");
 			return ERROR;
 		}
 	}

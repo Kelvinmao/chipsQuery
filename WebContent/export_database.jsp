@@ -37,11 +37,11 @@
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="admin.jsp" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>A</b>LT</span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
+      <span class="logo-lg"><b>数字芯片管理系统</b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -254,7 +254,7 @@
                 <div class="form-group">
                   <label for="submit-img">上传数据文件</label>
               		<input type="file" id="submit-img" name="upload">
-              		<p class="help-block">不要上传过大的文件，上传xls格式的Excel文件</p>
+              		<p class="help-block">不要上传过大的文件，请上传xls格式的Excel文件</p>
               		<input type="submit" value="Upload"/>
               	</div>
               	</form>
@@ -267,6 +267,8 @@
 		          <button type="button" onclick="location.href='ExportDatabase.action'" class="btn btn-success pull-left"><i class="fa fa-credit-card"></i> Export To Excel
 		        </button>
 		        </div>
+		        
+		    
             </div>
             <!-- /.box-header -->
             
@@ -279,18 +281,18 @@
               
             
           </div>
-          
-          <!-- /.box -->
-          	</div>
-          	
-        </div>
-        <!-- /.box-body -->
+          <!-- /.box-body -->
         <div class="box-footer">
           	<div class="col-sm-12 alert alert-danger" role="alert" id="export-attention">
                    
             </div>
         </div>
         <!-- /.box-footer-->
+          <!-- /.box -->
+          	</div>
+          	
+        </div>
+        
       </div>
       <!-- /.box -->
 

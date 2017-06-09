@@ -46,7 +46,7 @@ public class AdminLoginAction extends ActionSupport{
 	@Override
 	public void validate() {
 		if(adminID.isEmpty()||adminPwd.isEmpty())
-			this.addFieldError("", "用户名或密码不能为空");
+			this.addFieldError("logErr", "用户名或密码不能为空");
 	}
 	
 	@Override
@@ -58,6 +58,8 @@ public class AdminLoginAction extends ActionSupport{
 			session.setAttribute("admin", admin);
 			response.sendRedirect("admin.jsp");
 			return SUCCESS;
+		}else{
+			this.addFieldError("logErr", "用户名或密码错误");
 		}
 		return ERROR;
 	}
