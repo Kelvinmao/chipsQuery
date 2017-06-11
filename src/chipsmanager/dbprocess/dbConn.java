@@ -4,18 +4,18 @@ import java.sql.*;
 import org.eclipse.jdt.internal.compiler.batch.Main;
 
 /**
- * @author MaoKaining(Ã«¿­Äş)
+ * @author MaoKaining(æ¯›å‡¯å®)
  * @version 1.0
- * Copyright (c) 2017,±±¾©ÓÊµç´óÑ§¿Æ¼¼´´ĞÂ´ó±¾Óª
+ * Copyright (c) 2017,åŒ—äº¬é‚®ç”µå¤§å­¦ç§‘æŠ€åˆ›æ–°å¤§æœ¬è¥
  * All rights reserved.
- * ¹¦ ÄÜ:·â×°Êı¾İ¿âÁ¬½Ó²Ù×÷
+ * åŠŸ èƒ½:å°è£…æ•°æ®åº“è¿æ¥æ“ä½œ
  *
  */
 public class dbConn {
 	static final String JDBC_DRIVER="com.mysql.jdbc.Driver";
 	static final String DB_URL="jdbc:mysql://localhost:3306/ChipsDatabase?useUnicode=true&characterEncoding=utf-8&useSSL=false";
 	static final String ROOT_USRNAME="root";
-	static final String ROOT_PWD="L0ngl0ngag0=";
+	static final String ROOT_PWD="";
 	public static Connection connectToDatabase(){
 		Connection conn=null;
 		try{
